@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+
+		<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+		Remove this if you use the .htaccess -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+		<title>Embedded Report Maker</title>
+		<meta name="description" content="" />
+		<meta name="author" content="ivict@rambler.ru" />
+
+		<meta name="viewport" content="width=device-width; initial-scale=1.0" />
+
+		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+		<script>
+			var links = new Array();
+
+			var apiChecker = function() {
+				var messages = new Array();
+				// Check for the various File API support.
+				var check = function() {
+					messages.clear();
+					//CHECK FILE API
+					var fileAPISupport = window.File && window.FileReader && window.FileList && window.Blob;
+					if (!fileApiSupport) {
+						messages.add('The File APIs are not fully supported in this browser.');
+					}
+					return fileAPISupport;
+				}
+
+				return {
+					check : check,
+					messages : messages
+				}
+			}
+
+		</script>
+	</head>
+
+	<body>
+		<div>
+			<header>
+				<h1>Report Maker</h1>
+			</header>
+			<nav>
+				<!-- BUTTON -->
+				<div style="text-align: center; overflow: hidden; width: 32px; height: 32px; border: 4px solid #038f1a; background-color: #038f1a; -moz-border-radius: 15px; border-radius: 15px; cursor: pointer;">
+					<div style="color: #fff; font-size: 20px; font-weight: bold; cursor: pointer;">+</div>
+					<input type="file" name="files[]" id="files" multiple="" min="1" max="99" accept="application/json" size="1" style="margin-top: -50px; margin-left:-410px; -moz-opacity: 0; filter: alpha(opacity=0); opacity: 0; font-size: 150px; height: 100px;">
+				</div>
+				<hr/>
+
+			</nav>
+
+			<footer>
+				<p>
+					&copy; Copyright by Magenta-Technology
+				</p>
+			</footer>
+		</div>
+	</body>
+	<script>
+		function handleFileSelect(evt) {
+			var files = evt.target.files;
+			// FileList object
+
+			// files is a FileList of File objects. List some properties.
+			var output = [];
+			for (var i = 0, f; f = files[i]; i++) {
+				window.FileReader.
+				//output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ', f.size, ' bytes, last modified: ', f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a', '</li>');
+			}
+			//document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
+		}
+
+
+		document.getElementById('files').addEventListener('change', handleFileSelect, false);
+	</script>
+</html>
